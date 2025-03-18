@@ -47,6 +47,8 @@ class NoticeForm extends Component {
             sendSms: this.props.notice?.sendSms ?? false,
             sendEmail: this.props.notice?.sendEmail ?? false,
             attachmentsCount: this.props.notice?.attachmentsCount ?? 0, // Track attachment count
+            schedulePublish: this.props.notice?.schedulePublish ?? false,
+            publishStartDate: this.props.notice?.publishStartDate ?? null,
         };
     }
 

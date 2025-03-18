@@ -25,9 +25,6 @@ import {
   Dialog,
   DialogTitle,
   DialogContent,
-  Slider,
-  Box,
-  TextField,
 } from "@material-ui/core";
 import EditIcon from "@material-ui/icons/Edit";
 import AddIcon from "@material-ui/icons/Add";
@@ -36,6 +33,7 @@ import Shimmer from "../components/Shimmer";
 import Pagination from "../components/Pagination";
 import NoticeCalendar from "../components/NoticeCalendar";
 import NoticeCardContent from "../components/NoticeCardContent";
+import AccessibilityControls from "../components/AccessibilityControls";
 
 const styles = (theme) => ({
   page: theme.page,
@@ -89,34 +87,6 @@ const styles = (theme) => ({
   },
   dialogTitle: theme.dialog.title,
   dialogContent: theme.dialog.content,
-  accessibilityControls: {
-    display: "flex",
-    alignItems: "center",
-    gap: theme.spacing(2), // Slightly larger gap for clarity
-  },
-  sliderContainer: {
-    width: 150, // Compact slider width
-    marginRight: theme.spacing(1),
-  },
-  sliderLabel: {
-    fontSize: "0.875rem", // Small label (14px)
-    marginBottom: theme.spacing(0.5),
-  },
-  colorPicker: {
-    width: 40,
-    height: 40,
-    padding: 0,
-    "& .MuiInputBase-input": {
-      padding: 0,
-      width: "100%",
-      height: "100%",
-      cursor: "pointer",
-    },
-  },
-  colorPickerLabel: {
-    fontSize: "0.875rem", // Small label (14px)
-    marginBottom: theme.spacing(0.5),
-  },
 });
 
 class AllNotices extends Component {
@@ -249,30 +219,12 @@ class AllNotices extends Component {
           <Typography variant="h4" className={classes.title}>
             {formatMessageWithValues(intl, "notice", "allNoticesTitle")}
           </Typography>
-          <Box className={classes.accessibilityControls}>
-            <div className={classes.sliderContainer}>
-              <Typography className={classes.sliderLabel}>Text Size</Typography>
-              <Slider
-                value={textSize}
-                onChange={this.handleTextSizeChange}
-                min={0}
-                max={100}
-                step={1}
-                size="small"
-              />
-            </div>
-            <div>
-              <Typography className={classes.colorPickerLabel}>Color</Typography>
-              <TextField
-                type="color"
-                value={textColor}
-                onChange={this.handleTextColorChange}
-                className={classes.colorPicker}
-                variant="outlined"
-                InputLabelProps={{ shrink: true }}
-              />
-            </div>
-          </Box>
+          <AccessibilityControls
+            textSize={textSize}
+            textColor={textColor}
+            onTextSizeChange={this.handleTextSizeChange}
+            onTextColorChange={this.handleTextColorChange}
+          />
         </div>
         <List className={classes.list}>
           {notices.map((notice, index) => (
@@ -351,19 +303,6 @@ class AllNotices extends Component {
           hasPreviousPage={noticesPageInfo?.hasPreviousPage || false}
           onPageChange={this.handlePageChange}
         />
-        <Tooltip
-          title={
-            this.canAdd()
-              ? formatMessageWithValues(intl, "notice", "addNoticeTooltip")
-              : ""
-          }
-        >
-          <div className={classes.fab}>
-            <Fab color="primary" disabled={!this.canAdd()} onClick={this.onAdd}>
-              <AddIcon />
-            </Fab>
-          </div>
-        </Tooltip>
       </div>
     );
   }

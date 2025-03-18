@@ -16,12 +16,17 @@ import PriorityChip from "./PriorityChip";
 const styles = (theme) => ({
   card: {
     backgroundColor: theme.palette.background.paper,
-    boxShadow: theme.shadows[2],
     borderRadius: theme.spacing(1),
-    padding: theme.spacing(2),
+    // padding: theme.spacing(2),
     width: "100%",
     minWidth: 0,
     flexGrow: 1,
+  },
+  cardContent: {
+    padding: theme.spacing(2), // Default padding, adjustable
+    "&:last-child": {
+      paddingBottom: theme.spacing(2), // Ensures consistent spacing
+    },
   },
   title: {
     display: "flex",
@@ -46,7 +51,6 @@ class NoticeCardContent extends Component {
   render() {
     const { classes, notice, textSize, textColor } = this.props;
 
-    // Map textSize (0-100) to font sizes and variants
     const getTextStyles = (size) => {
       if (size <= 33) {
         return { title: { variant: "h6", fontSize: "1rem" }, description: { variant: "body2", fontSize: "0.875rem" }, metadata: { variant: "caption", fontSize: "0.75rem" } };
@@ -60,8 +64,8 @@ class NoticeCardContent extends Component {
     const sizes = getTextStyles(textSize);
 
     return (
-      <Card className={classes.card}>
-        <CardContent>
+      <Card  elevation={0} className={classes.card}>
+        <CardContent className={classes.cardContent}>
           <Box className={classes.title}>
             <NotificationImportantIcon style={{ marginRight: 8, color: textColor || "#000000" }} />
             <Typography

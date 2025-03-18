@@ -69,6 +69,8 @@ export function createNotice(mm, notice, clientMutationLabel, clientMutationDeta
     priority: "${notice.priority}"
     healthFacilityId: ${notice.healthFacility ? decodeId(notice.healthFacility.id) : null}  
     ${notice.uuid ? `uuid: "${notice.uuid}"` : ''}  
+    schedulePublish: ${notice.schedulePublish !== undefined ? notice.schedulePublish : false}
+    ${notice.publishStartDate ? `publishStartDate: "${notice.publishStartDate.toISOString()}"` : ''}
   `;
 
   let mutation = formatMutation("createNotice", noticeGQL, clientMutationLabel, clientMutationDetails);

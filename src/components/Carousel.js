@@ -8,7 +8,7 @@ const styles = {
   carouselContainer: {
     position: "relative",
     width: "100%",
-    height: "400px",
+    height: "800px",
     overflow: "hidden",
     display: "flex",
     justifyContent: "center",
