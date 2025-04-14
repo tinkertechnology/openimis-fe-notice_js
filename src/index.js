@@ -9,8 +9,10 @@ import NoticeMainMenu from "./menus/NoticeMainMenu";
 import AllNoticePage from "./pages/AllNoticePage";
 import NoticeAttachmentsDialog from "./components/NoticeAttachmentsDialog";
 import Carousel from "./components/Carousel";
+import RequestLogsPage from "./pages/RequestLogsPage";
 
 const ROUTE_ALL_NOTICE_PAGE = "notice/allNotices";
+const ROUTE_REQUEST_LOGS_PAGE = "notice/requestLogs";
 
 const DEFAULT_CONFIG = {
   "translations": [{ key: "en", messages: messages_en }],
@@ -26,7 +28,8 @@ const DEFAULT_CONFIG = {
   "core.Router": [
     { path: ROUTE_NOTICES, component: NoticesPage },
     { path: ROUTE_NOTICE_EDIT + "/:notice_uuid?", component: NoticePage },
-    { path: ROUTE_ALL_NOTICE_PAGE, component: AllNoticePage }
+    { path: ROUTE_ALL_NOTICE_PAGE, component: AllNoticePage },
+    {path: ROUTE_REQUEST_LOGS_PAGE, component: RequestLogsPage}
   ],
   "core.MainMenu": [NoticeMainMenu]
 };

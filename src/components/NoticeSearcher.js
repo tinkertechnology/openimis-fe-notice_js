@@ -117,8 +117,8 @@ class NoticeSearcher extends Component {
     ['description', true],
     ['priority', true],
     ['health_facility', true],
-    ['created_at', true],
-    ['updated_at', true],
+    ['createAt', true],
+    ['updatedAt', true],
     ['is_active', true],
   ];
 
@@ -202,7 +202,7 @@ class NoticeSearcher extends Component {
           fetch={this.fetch}
           rowIdentifier={this.rowIdentifier}
           filtersToQueryParams={this.filtersToQueryParams}
-          defaultOrderBy="-created_at"
+          defaultOrderBy="-createdAt"
           rowLocked={this.rowLocked}
           headers={this.headers}
           itemFormatters={this.itemFormatters}

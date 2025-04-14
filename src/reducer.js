@@ -21,6 +21,12 @@ import {
       fetchedNoticeAttachments: false,
       noticeAttachments: [],
       errorNoticeAttachments: null,
+
+      fetchingRequestLogs: false,
+    fetchedRequestLogs: false,
+    requestLogs: [],
+    requestLogsPageInfo: { totalCount: 0 },
+    errorRequestLogs: null,
     },
     action,
   ) {
@@ -128,6 +134,13 @@ import {
         return dispatchMutationResp(state, "updateNotice", action);
       case 'NOTICE_MUTATION_ERR':
         return dispatchMutationErr(state, action);
+      case 'CREATE_NOTICE_ATTACHMENT_REQ':
+        return dispatchMutationReq(state, action);
+      case 'CREATE_NOTICE_ATTACHMENT_RESP':
+        return dispatchMutationReq(state, "createAttachment", action);  
+      case 'CREATE_NOTICE_ATTACHMENT_ERR':
+        return dispatchMutationErr(state, action);              
+
         case 'NOTICE_ATTACHMENTS_REQ':
           return {
             ...state,
@@ -151,6 +164,30 @@ import {
             fetchedNoticeAttachments: false,
             errorNoticeAttachments: formatServerError(action.payload),
           };
+          case "FETCH_REQUEST_LOGS_REQ":
+      return {
+        ...state,
+        fetchingRequestLogs: true,
+        fetchedRequestLogs: false,
+        requestLogs: [],
+        requestLogsPageInfo: { totalCount: 0 },
+        errorRequestLogs: null,
+      };
+    case "FETCH_REQUEST_LOGS_RESP":
+      return {
+        ...state,
+        fetchingRequestLogs: false,
+        fetchedRequestLogs: true,
+        requestLogs: parseData(action.payload.data.requestLogs),
+        requestLogsPageInfo: pageInfo(action.payload.data.requestLogs),
+        errorRequestLogs: formatGraphQLError(action.payload),
+      };
+    case "FETCH_REQUEST_LOGS_ERR":
+      return {
+        ...state,
+        fetchingRequestLogs: false,
+        errorRequestLogs: formatServerError(action.payload),
+      };
       default:
         return state;
     }

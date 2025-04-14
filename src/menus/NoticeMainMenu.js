@@ -23,6 +23,14 @@ class NoticeMainMenu extends Component {
         route: "/notice/allNotices",
       });
     }
+    if (true || (!!rights.filter((r) => r >= RIGHT_NOTICE_SEARCH && r <= RIGHT_NOTICE_ADD).length)) {
+      entries.push({
+        text: formatMessage(this.props.intl, "notice", "Logs"),
+        icon: <ListAlt />,
+        route: "/notice/requestLogs",
+      });
+    }
+
     if (!entries.length) return null;
     return (
       <MainMenuContribution

@@ -248,7 +248,7 @@ export function createAttachment(attachment, clientMutationLabel) {
 
   return graphql(
     mutation.payload,
-    ["CREATE_NOTICE_ATTACHMENT_REQUEST", "CREATE_NOTICE_ATTACHMENT_SUCCESS", "CREATE_NOTICE_ATTACHMENT_FAILURE"],
+    ["CREATE_NOTICE_ATTACHMENT_REQ", "CREATE_NOTICE_ATTACHMENT_RESP", "CREATE_NOTICE_ATTACHMENT_ERR"],
     {
       clientMutationId: mutation.clientMutationId,
       clientMutationLabel,
@@ -273,4 +273,27 @@ export function updateAttachment(attachment, message) {
     NOTICE_ATTACHMENTS_FULL_PROJECTION()
   );
   return graphql(payload, UPDATE_NOTICE_ATTACHMENT_REQUEST, UPDATE_NOTICE_ATTACHMENT_SUCCESS, UPDATE_NOTICE_ATTACHMENT_FAILURE, { mutationLog: { message } });
+}
+
+
+export function fetchRequestLogs(mm, prms) {
+  const payload = formatPageQueryWithCount(
+    "requestLogs",
+    prms,
+    [
+      "id",
+      "timestamp",
+      "appName",
+      "method",
+      "path",
+      "routeName",
+      "statusCode",
+      "durationMs",
+      "requestData",
+      "responseData",
+      "statusCode",
+      "user",
+    ]
+  );
+  return graphql(payload, "FETCH_REQUEST_LOGS");
 }

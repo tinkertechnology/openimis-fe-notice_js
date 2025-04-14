@@ -25,8 +25,8 @@
   "notice.noPermissionMessage": "You do not have permission to perform this action ({permission}). Please contact your administrator.",
   "NoticeForm.title": "Notice",
   "NoticeForm.title.new": "New Notice",
-  "notice.send_email": "Send Email",
-  "notice.send_sms": "Send SMS",
+  "notice.sendEmail": "Send Email",
+  "notice.sendSMS": "Send SMS",
   "notice.schedule_publish": "Schedule Publish",
   "notice.NotificationPanel": "Notice Notifications Settings",
   "notice.toggleStatus": "Toggle Notice Status",
@@ -52,5 +52,20 @@
   "url.validation.notAllowed": "Domain not allowed",
   "url.validation.generalError": "An error occurred while validating the URL",
   "close": "Close",
-  "carousel.preview": "Preview"
+  "carousel.preview": "Preview",
+
+  
+    "requestLog.timestamp": "Timestamp",
+    "requestLog.appName": "App Name",
+    "requestLog.method": "Method",
+    "requestLog.path": "Path",
+    "requestLog.routeName": "Route Name",
+    "requestLog.statusCode": "Status Code",
+    "requestLog.durationSeconds": "Duration (s)",
+    "requestLog.user": "User",
+    "requestLog.requestData": "Request Data",
+    "requestLog.responseData": "Response Data",
+    "requestLog.requestLogs_table.count": "Request Logs ({count})",
+    "requestLog.refreshLogsTooltip": "Refresh Logs"
+  
 }
